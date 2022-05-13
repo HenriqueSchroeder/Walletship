@@ -1,0 +1,12 @@
+{
+  "name": "wallet",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "packages/backend/*",
+    "packages/frontend/*"
+  ],
+  "repository": "git@github.com:HenriqueSchroeder/Wallet.git",
+  "author": "Henrique Schroeder <henriqueschroederhs@gmail.com.br>",
+  "license": "MIT"
+}
