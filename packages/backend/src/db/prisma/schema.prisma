@@ -1,0 +1,76 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum user_role {
+  USER
+  ADMIN
+}
+
+model user {
+  id       String    @id @unique @default(uuid())
+  email    String    @unique
+  name     String
+  role     user_role @default(USER)
+  password String
+  isActive Boolean   @default(false)
+
+  categories categories[]
+  wallet     wallet[]
+}
+
+model wallet {
+  id        String   @id @unique @default(uuid())
+  title     String
+  content   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user   user   @relation(fields: [userId], references: [id])
+  userId String
+
+  categories categories[]
+  movement   movement[]
+
+  @@index([userId], map: "wallet_userId_fkey")
+}
+
+model categories {
+  id        String   @id @unique @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  title     String
+  content   String?
+
+  user     user    @relation(fields: [userId], references: [id])
+  userId   String
+  wallet   wallet? @relation(fields: [walletId], references: [id])
+  walletId String?
+
+  movement movement[]
+  @@index([userId], map: "categories_userId_fkey")
+  @@index([walletId], map: "categories_walletId_fkey")
+}
+
+model movement {
+  id           String   @id @unique @default(uuid())
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  dateMoviment DateTime
+  content      String?
+  value        Float
+
+  wallet   wallet @relation(fields: [walletId], references: [id])
+  walletId String
+
+  categories   categories @relation(fields: [categoriesId], references: [id])
+  categoriesId String
+
+  @@index([walletId], map: "movement_walletId_fkey")
+  @@index([categoriesId], map: "movement_categoriesId_fkey")
+}

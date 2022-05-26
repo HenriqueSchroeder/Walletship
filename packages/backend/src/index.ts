@@ -1,11 +1,21 @@
+import { PORT } from './config/env'
+import { server } from '~/app'
 
-import express from "express";
+const infoRunServer = () =>
+  console.log(
+    `🚀 Starting server in http://localhost:${PORT}/graphql`
+  )
 
-import routes from "./routes";
+/**
+ * Start the server.
+ */
+async function runServer() {
+  const app = await server()
 
-const app = express();
+  /**
+   * Running server.
+   */
+  app.listen(PORT, infoRunServer)
+}
 
-app.use(express.json());
-app.use(routes);
-
-app.listen(3000, () => console.log("Server ini"));
+runServer()

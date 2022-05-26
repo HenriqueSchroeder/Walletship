@@ -1,14 +1,15 @@
 <h1 align="center">Wallet</h1>
 
 <p align="center">
+  <a href="#-origem">Origem</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-projeto">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-licença">Licença</a>
 </p>
 
-## 💻 Projeto
+## 🛸 Origem
 
-A **Wallet** um sistema para gerenciamento de gastos
+Depois que a **Mothership** veio até o planeta 3357 nos mostraram suas tecnologias e modo de trabalho, com isso melhoramos nossa forma de resolver problemas. Dessa forma foi desenvolvido a **Wallet** para solucionar os problemas de gestão de gastos usando a tecnologia que a **Mothership** trouxe a nós.
 
 ## 🚀 Tecnologias
 
@@ -17,12 +18,12 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - [Node.js](https://nodejs.org/en/)
 - [Typescript](https://www.typescriptlang.org/)
 - [Type Graphql](https://typegraphql.com/)
-- [TypeORM](https://typeorm.io/)
+- [Prisma](https://prisma.io/)
+
+## 💻 Projeto
+
+A **Wallet** um sistema para gerenciamento de gastos.
 
 ## 📝 Licença
 
 Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE.md) para mais detalhes.
-
----
-
-Feito pela equipe Galáctica 👽

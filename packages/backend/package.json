@@ -1,27 +1,67 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/index.ts",
   "scripts": {
-    "dev": "yarn nodemon --exec ts-node src/index.ts",
-    "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js"
+    "dev": "NODE_ENV=dev yarn tsnd -r tsconfig-paths/register --respawn --transpile-only --ignore-watch node_modules --no-notify src",
+    "test": "NODE_ENV=test jest --runInBand",
+    "lint": "eslint src --ext .ts && tsc --noemit",
+    "test:ci": "NODE_ENV=test jest --runInBand --bail --coverage --ci --logHeapUsage",
+    "test:e2e": "NODE_ENV=test jest e2e --runInBand --verbose",
+    "test:unit": "NODE_ENV=test jest unit --verbose",
+    "test:path": "NODE_ENV=test jest --runInBand --verbose",
+    "test:coverage": "NODE_ENV=test jest --runInBand --coverage",
+    "test:integration": "NODE_ENV=test jest integration --runInBand --verbose",
+    "prisma:migrate:dev": "prisma migrate dev && prisma generate"
   },
   "author": "Henrique Schroeder <henriqueschroederhs@gmail.com.br>",
   "license": "MIT",
-  "devDependencies": {
-    "@types/express": "^4.17.13",
-    "@types/node": "^16.11.10",
-    "nodemon": "^2.0.16",
+  "dependencies": {
+    "@apollo/client": "^3.6.4",
     "@prisma/client": "3.14.0",
+    "apollo-server-express": "^3.7.0",
+    "bcryptjs": "^2.4.3",
+    "class-validator": "^0.13.2",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "cross-fetch": "^3.1.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "graphql": "^15.3.0",
+    "graphql-ws": "^5.8.2",
+    "helmet": "^5.1.0",
+    "jsonwebtoken": "^8.5.1",
+    "mysql": "^2.18.1",
+    "prisma": "^3.14.0",
+    "reflect-metadata": "^0.1.13",
+    "type-graphql": "^1.1.1",
+    "winston": "^3.7.2",
+    "ws": "^8.6.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.10",
+    "@babel/preset-env": "^7.17.10",
+    "@babel/preset-typescript": "^7.16.7",
+    "@types/bcryptjs": "^2.4.2",
+    "@types/compression": "^1.7.2",
+    "@types/express": "^4.17.13",
+    "@types/jest": "^27.5.1",
+    "@types/jsonwebtoken": "^8.5.8",
+    "@types/node": "^16.11.10",
+    "@types/ws": "^8.5.3",
+    "babel": "^6.23.0",
+    "babel-jest": "^28.1.0",
+    "jest": "^28.1.0",
+    "jest-mock-extended": "^2.0.6",
+    "prettier": "^2.6.2",
+    "subscriptions-transport-ws": "^0.11.0",
+    "ts-jest": "^28.0.2",
     "ts-node": "10.7.0",
     "ts-node-dev": "^1.1.8",
     "tsconfig-paths": "^4.0.0",
     "typescript": "4.5.2"
   },
-  "dependencies": {
-    "express": "^4.18.1",
-    "mysql": "^2.18.1",
-    "prisma": "^3.14.0",
-    "reflect-metadata": "^0.1.13"
+  "prisma": {
+    "schema": "./src/db/prisma/schema.prisma"
   }
 }
