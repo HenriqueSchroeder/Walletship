@@ -32,7 +32,7 @@ jobs:
         run: 'yarn'
 
       - name: Deploy prisma
-        run: 'prisma migrate deploy'
+        run: 'prisma migrate deploy && prisma generate'
 
       - name: Testes e cobertura
         env:

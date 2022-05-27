@@ -1,5 +1,5 @@
-import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
+import bcrypt from 'bcryptjs'
 
 import db from '~/db/prisma'
 import { SALT } from '~/config/env'
