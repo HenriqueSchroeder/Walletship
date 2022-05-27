@@ -32,7 +32,7 @@ jobs:
         run: 'yarn'
 
       - name: Deploy prisma
-        run: 'prisma migrate deploy && prisma generate'
+        run: 'cd ${{ env.PROJECT_PATH }} && yarn prisma migrate deploy && yarn prisma generate'
 
       - name: Testes e cobertura
         env:

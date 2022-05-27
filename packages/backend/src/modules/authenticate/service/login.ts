@@ -5,8 +5,8 @@ import db from '~/db/prisma'
 import { SALT } from '~/config/env'
 import { logger } from '~/common/logger'
 
-import { authenticateType } from './types'
 import { objectToJSON } from '~/common/object'
+import { authenticateType } from './types'
 
 /**
  * Authentify the application.
