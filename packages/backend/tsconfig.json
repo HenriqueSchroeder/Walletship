@@ -2,7 +2,7 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "./dist",
-    "typeRoots": ["./node_modules/@types", "./src/@types"],
+    "typeRoots": ["./src/@types"],
     "rootDirs": ["./src", "./__tests__"],
 
     "resolveJsonModule": true,
@@ -13,14 +13,12 @@
     "paths": {
       "~/*": ["./src/*"],
       "test/*": ["./__tests__/*"]
-    },
-    "types": ["@types/node", "@types/jest"]
+    }
   },
   "ts-node": {
     "files": true
   },
   "exclude": ["node_modules"],
   "include": ["./src/**/*.ts", "./__tests__/**/*.ts"],
-
   "skipLibCheck": true
 }

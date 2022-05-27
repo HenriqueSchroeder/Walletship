@@ -1,10 +1,9 @@
+import './config-aliases'
 import { PORT } from './config/env'
 import { server } from '~/app'
 
 const infoRunServer = () =>
-  console.log(
-    `🚀 Starting server in http://localhost:${PORT}/graphql`
-  )
+  console.log(`🚀 Starting server in http://localhost:${PORT}/graphql`)
 
 /**
  * Start the server.

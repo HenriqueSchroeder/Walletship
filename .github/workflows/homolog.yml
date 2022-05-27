@@ -1,0 +1,53 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - homolog
+
+    paths:
+      - 'packages/backend/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      PROJECT_PATH: packages/backend
+      PROJECT_NAME: backend
+      DB_USER: ${{ secrets.HOMOLOG_DB_USER }}
+      DB_PASS: ${{ secrets.HOMOLOG_DB_PASS }}
+      DB_HOST: ${{ secrets.HOMOLOG_DB_HOST }}
+      DB_PORT: ${{ secrets.HOMOLOG_DB_PORT }}
+      DB_DATABASE: ${{ secrets.HOMOLOG_DB_DATABASE}}
+      SALT: ${{ secrets.SALT }}
+      DATABASE_URL: ${{ secrets.HOMOLOG_DATABASE_URL }}
+    steps:
+      - name: Iniciando
+        uses: actions/checkout@v2
+
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16.x
+
+      - name: Instalando dependências
+        run: 'yarn'
+
+      - name: Testes e cobertura
+        env:
+          NODE_OPTIONS: '--max_old_space_size=8192'
+        run: 'cd ${{ env.PROJECT_PATH }} && yarn test:ci'
+
+      - name: Gera build do backend
+        run: 'cd ${{ env.PROJECT_PATH }} && yarn build'
+
+      - name: Removendo dependências desnecessárias
+        run: 'rm -rf node_modules && yarn --production'
+
+      - name: Deploy to Heroku
+      - uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HOMOLOG_HEROKU_API_KEY}}
+          heroku_app_name: ${{secrets.HOMOLOG_HEROKU_NAME_APP}}
+          heroku_email: ${{secrets.HOMOLOG_HEROKU_EMAIL}}
+          usedocker: true

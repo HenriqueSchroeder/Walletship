@@ -1,5 +1,4 @@
 import { user_role } from '@prisma/client'
-
 import { createUser } from '~/modules/users/service/create-user'
 import { updateUser } from '~/modules/users/service/update-user'
 import { isRoleUser } from '~/modules/users/service/is-role'

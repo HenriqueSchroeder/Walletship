@@ -5,6 +5,7 @@ CREATE TABLE `user` (
     `name` VARCHAR(191) NOT NULL,
     `role` ENUM('USER', 'ADMIN') NOT NULL DEFAULT 'USER',
     `password` VARCHAR(191) NOT NULL,
+    `isActive` BOOLEAN NOT NULL DEFAULT false,
 
     UNIQUE INDEX `user_id_key`(`id`),
     UNIQUE INDEX `user_email_key`(`email`),
@@ -16,9 +17,9 @@ CREATE TABLE `wallet` (
     `id` VARCHAR(191) NOT NULL,
     `title` VARCHAR(191) NOT NULL,
     `content` VARCHAR(191) NULL,
-    `userId` VARCHAR(191) NOT NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL,
+    `userId` VARCHAR(191) NOT NULL,
 
     UNIQUE INDEX `wallet_id_key`(`id`),
     INDEX `wallet_userId_fkey`(`userId`),
@@ -30,9 +31,10 @@ CREATE TABLE `categories` (
     `id` VARCHAR(191) NOT NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL,
+    `title` VARCHAR(191) NOT NULL,
     `content` VARCHAR(191) NULL,
     `userId` VARCHAR(191) NOT NULL,
-    `walletId` VARCHAR(191) NOT NULL,
+    `walletId` VARCHAR(191) NULL,
 
     UNIQUE INDEX `categories_id_key`(`id`),
     INDEX `categories_userId_fkey`(`userId`),
@@ -49,9 +51,11 @@ CREATE TABLE `movement` (
     `content` VARCHAR(191) NULL,
     `value` DOUBLE NOT NULL,
     `walletId` VARCHAR(191) NOT NULL,
+    `categoriesId` VARCHAR(191) NOT NULL,
 
     UNIQUE INDEX `movement_id_key`(`id`),
     INDEX `movement_walletId_fkey`(`walletId`),
+    INDEX `movement_categoriesId_fkey`(`categoriesId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -62,7 +66,10 @@ ALTER TABLE `wallet` ADD CONSTRAINT `wallet_userId_fkey` FOREIGN KEY (`userId`) 
 ALTER TABLE `categories` ADD CONSTRAINT `categories_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `user`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `categories` ADD CONSTRAINT `categories_walletId_fkey` FOREIGN KEY (`walletId`) REFERENCES `wallet`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `categories` ADD CONSTRAINT `categories_walletId_fkey` FOREIGN KEY (`walletId`) REFERENCES `wallet`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `movement` ADD CONSTRAINT `movement_walletId_fkey` FOREIGN KEY (`walletId`) REFERENCES `wallet`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `movement` ADD CONSTRAINT `movement_categoriesId_fkey` FOREIGN KEY (`categoriesId`) REFERENCES `categories`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;

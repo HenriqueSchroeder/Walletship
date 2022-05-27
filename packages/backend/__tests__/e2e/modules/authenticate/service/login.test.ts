@@ -1,11 +1,11 @@
 import { decode } from '~/lib/token'
+import { user_role } from '@prisma/client'
 import { loginQuery } from './queries'
 
 import { runInTenant } from 'test/helpers/tenant'
 import { UserBuilder } from 'test/helpers/builders/user'
 import { truncateAllTables } from 'test/helpers/db'
 import { client, closeServer, startServer } from 'test/helpers/server'
-import { user_role } from '@prisma/client'
 
 describe('[E2E] Autenticação', () => {
   beforeEach(truncateAllTables)

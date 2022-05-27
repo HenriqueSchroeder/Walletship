@@ -1,4 +1,4 @@
-import { PrismaClient } from '.prisma/client'
+import { PrismaClient } from '@prisma/client'
 import { cryptoPassword } from './middleware/cryptoPassword'
 import { emailVerification } from './middleware/email'
 

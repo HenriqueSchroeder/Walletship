@@ -3,12 +3,17 @@ import path from 'path'
 import cors from 'cors'
 import helmet from 'helmet'
 import express from 'express'
-import { createServer } from 'http'
 import compression from 'compression'
+import { createServer } from 'http'
 import { buildSchema } from 'type-graphql'
 import { ApolloServer } from 'apollo-server-express'
+import {
+  ApolloServerPluginLandingPageGraphQLPlayground,
+  ApolloServerPluginLandingPageDisabled
+} from 'apollo-server-core'
 
 import { authChecker } from './middlewares/authorization'
+import { isProductionEnvironment } from './common/conditions'
 
 /**
  * Create the server.
@@ -29,7 +34,6 @@ export const server = async () => {
     dateScalarMode: 'isoDate'
   })
 
-  // const isDevEnvironment = true
   /**
    * Set apollo server.
    */
@@ -43,6 +47,11 @@ export const server = async () => {
       return { req, token: req.headers.token }
     },
     csrfPrevention: true,
+    plugins: [
+      isProductionEnvironment
+        ? ApolloServerPluginLandingPageDisabled()
+        : ApolloServerPluginLandingPageGraphQLPlayground()
+    ]
   })
 
   /**

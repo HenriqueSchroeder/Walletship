@@ -1,4 +1,4 @@
-import { user_role } from "@prisma/client"
+import { user_role } from '@prisma/client'
 
 export type createUserParams = {
   password: string
