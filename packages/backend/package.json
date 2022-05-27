@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "src/index.ts",
   "scripts": {
+    "start": "yarn build && node dist/index.ts",
     "dev": "NODE_ENV=dev yarn tsnd -r tsconfig-paths/register --respawn --transpile-only --ignore-watch node_modules --no-notify src",
     "test": "NODE_ENV=test jest --runInBand",
     "lint": "eslint src --ext .ts && tsc --noemit",
