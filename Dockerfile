@@ -23,7 +23,7 @@ COPY packages/backend/dist/ backend
 
 # Defining environment variables
 ENV PORT 80
-ENV DATABASE_URL mysql://root:wallet_190_pass@mariadb:3306/walletship
+
 # Exposing service running port
 EXPOSE 80
 
