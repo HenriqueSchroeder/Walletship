@@ -31,6 +31,9 @@ jobs:
       - name: Instalando dependências
         run: 'yarn'
 
+      - name: Deploy prisma
+        run: 'prisma migrate deploy'
+
       - name: Testes e cobertura
         env:
           NODE_OPTIONS: '--max_old_space_size=8192'
