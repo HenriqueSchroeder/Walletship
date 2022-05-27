@@ -1,4 +1,4 @@
-name: Deploy
+name: Homolog
 
 on:
   push:
@@ -10,6 +10,7 @@ on:
 
 jobs:
   build:
+    name: Deploy
     runs-on: ubuntu-latest
     env:
       PROJECT_PATH: packages/backend
@@ -22,11 +23,12 @@ jobs:
       SALT: ${{ secrets.SALT }}
       DATABASE_URL: ${{ secrets.HOMOLOG_DATABASE_URL }}
     steps:
-      - name: Iniciando
-        uses: actions/checkout@v2
-        uses: actions/setup-node@v1
+      - uses: actions/checkout@v2
         with:
-          node-version: 16.x
+          token: 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
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16.15.0'
 
       - name: Instalando dependências
         run: 'yarn'
