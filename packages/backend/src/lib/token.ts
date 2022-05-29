@@ -24,6 +24,7 @@ export const decode = (token: string): Token => {
     /**
      * Decode token.
      */
+    console.log('SALT', SALT, 'decodeToken')
     const decodedToken = verify(token, SALT) as JWTToken
 
     /**

@@ -72,6 +72,7 @@ export const authenticate = async (params: authenticateType) => {
   /**
    * Create token.
    */
+  console.log('SALT', SALT, 'createToken')
   const token = jwt.sign({ data }, SALT, { expiresIn: '1d' })
 
   /**
