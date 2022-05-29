@@ -11,7 +11,7 @@ export const runInTenant = async (cb: () => Promise<void> | void) => {
         typeof error === 'object' &&
         Object.keys(error as object).length !== 0
       )
-        console.log('Error:', JSON.stringify(error))
+        console.error('Error:', JSON.stringify(error))
 
       reject(error)
     }
