@@ -20,7 +20,7 @@ jobs:
       DB_HOST: ${{ secrets.HOMOLOG_DB_HOST }}
       DB_PORT: ${{ secrets.HOMOLOG_DB_PORT }}
       DB_DATABASE: ${{ secrets.HOMOLOG_DB_DATABASE}}
-      SALT: ${{ secrets.SALT }}
+      SALT: ${{ secrets.HOMOLOG_SALT }}
       DATABASE_URL: ${{ secrets.HOMOLOG_DATABASE_URL }}
     steps:
       - uses: actions/checkout@v2

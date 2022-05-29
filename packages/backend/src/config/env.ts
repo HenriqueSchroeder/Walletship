@@ -11,6 +11,7 @@ const fileName = isTestEnvironment ? '.env.test' : '.env'
 
 config({ path: resolve(__dirname, '..', '..', fileName) })
 
+console.log(process.env.DB_HOST, process.env.DB_PORT)
 export const {
   PORT = 7000,
   DB_PORT = 3306,
