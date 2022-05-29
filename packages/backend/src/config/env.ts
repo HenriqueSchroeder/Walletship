@@ -18,10 +18,11 @@ export const {
 
   SALT = 'the_bomb_has_been_planted',
 
-  // MySQL
-  MYSQL_NAME = '',
-  MYSQL_USER = '',
-  MYSQL_PASS = '',
-  MYSQL_HOST = '',
-  MYSQL_DATABASE = ''
+  POSTGRES_USER = '',
+  POSTGRES_PASS = '',
+  POSTGRES_HOST = '',
+  POSTGRES_DATABASE = '',
+
+  // Prisma
+  DATABASE_URL = ''
 } = process.env

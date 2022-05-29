@@ -14,3 +14,7 @@ stop:
 
 clean:
 	docker-compose down
+
+#docker run -p 80:80 --add-host=host.docker.internal:host-gateway --env-file .env  backend-test:latest
+# .env
+#DATABASE_URL=postgresql://${USER}:${PASS}@host.docker.internal/${DATABASE}

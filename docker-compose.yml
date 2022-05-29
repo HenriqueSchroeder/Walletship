@@ -4,15 +4,20 @@ networks:
   database:
 
 services:
-  mariadb:
-    image: mariadb:latest
-    container_name: wallet-mariadb
+  postgres:
+    image: postgres:latest
+    container_name: wallet-postgres
     ports:
-      - 3306:3306
+      - 5432:5432
+
     environment:
-      - MYSQL_ROOT_PASSWORD=wallet_190_pass
-      - MYSQL_DATABASE=walletship
+      - POSTGRES_HOST=127.0.0.1
+      - POSTGRES_USER=rootpostgres
+      - POSTGRES_PASSWORD=wallet_190_pass
+      - POSTGRES_DB=walletship
+
     volumes:
-      - ./volumes/data:/var/lib/mysql
+      - ./volumes/data:/var/lib/postgresql/data
+
     networks:
       - database
