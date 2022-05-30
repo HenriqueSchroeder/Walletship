@@ -1,10 +1,27 @@
+import { user } from '@prisma/client'
+
 import db from '~/db/prisma'
 import { UserBuilder } from './user'
 
 export class WalletBuilder {
   private title = 'Wallet'
   private content = 'Wallet description'
-  private user = null
+  private user!: user
+
+  setTitle(title: string) {
+    this.title = title
+    return this
+  }
+
+  setContent(content: string) {
+    this.content = content
+    return this
+  }
+
+  setUser(user: user) {
+    this.user = user
+    return this
+  }
 
   /**
    * Return an instance.
