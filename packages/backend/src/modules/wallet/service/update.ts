@@ -18,6 +18,20 @@ export const updateWallet = async (params: updateWalletParams) => {
   const { id, title, content } = params
 
   /**
+   * There is a wallet.
+   */
+  const walletExists = await db.wallet.findUnique({ where: { id } })
+
+  /**
+   * If there is no wallet.
+   */
+  if (!walletExists) {
+    logger.info('Carteira não existe')
+    logger.info('==== ATUALIZANDO A CARTEIRA =====')
+    return {}
+  }
+
+  /**
    * Updating the wallet.
    */
   const wallet = await db.wallet.update({
