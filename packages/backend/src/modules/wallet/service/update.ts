@@ -44,6 +44,13 @@ export const updateWallet = async (params: updateWalletParams) => {
     data: {
       title,
       content
+    },
+    select: {
+      id: true,
+      title: true,
+      content: true,
+      createdAt: true,
+      updatedAt: true
     }
   })
 

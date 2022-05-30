@@ -1,7 +1,8 @@
 /**
  * API context type.
  */
- export type APIContext = {
+export type APIContext = {
+  uuid: string
   req: {
     headers: {
       token?: string

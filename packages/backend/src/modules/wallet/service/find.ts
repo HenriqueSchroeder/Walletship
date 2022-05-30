@@ -19,7 +19,16 @@ export const findWallets = async (params: findWalletParams) => {
   /**
    * Find wallts.
    */
-  const wallets = await db.wallet.findMany({ where: { userId } })
+  const wallets = await db.wallet.findMany({
+    where: { userId },
+    select: {
+      id: true,
+      title: true,
+      content: true,
+      createdAt: true,
+      updatedAt: true
+    }
+  })
 
   /**
    * Logs.

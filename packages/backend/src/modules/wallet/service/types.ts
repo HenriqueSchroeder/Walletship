@@ -1,13 +1,13 @@
 export type createWalletParams = {
+  content?: string
   userId: string
   title: string
-  content: string
 }
 
 export type updateWalletParams = {
-  id: string
+  content?: string
   title: string
-  content: string
+  id: string
 }
 
 export type deleteWalletParams = {

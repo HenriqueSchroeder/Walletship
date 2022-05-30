@@ -43,6 +43,11 @@ export const authChecker: AuthChecker<APIContext> = async (
      */
     if (!isValidProfile) return false
 
+    /**
+     * Set user info.
+     */
+    context.uuid = uuid
+
     return true
   } catch {
     return false

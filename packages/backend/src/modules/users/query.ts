@@ -12,7 +12,7 @@ import {
 } from '~/schemas/create-user'
 
 @Resolver()
-export class CreateUserQueryResolver {
+export class UserQueryResolver {
   @Query(() => UserStatusAndIdentification, {
     description: 'Cria usuario'
   })
@@ -31,7 +31,7 @@ export class CreateUserQueryResolver {
     @Arg('params')
     params: UpdateUserParameters
   ) {
-    return updateUser(params)
+    return await updateUser(params)
   }
 
   @Query(() => [AllUsersReturn], {
