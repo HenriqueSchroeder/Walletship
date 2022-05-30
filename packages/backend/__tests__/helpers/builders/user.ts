@@ -1,9 +1,11 @@
 import { user_role } from '@prisma/client'
 import db from '~/db/prisma'
 
+import { emailGenerator } from '../email-generator'
+
 export class UserBuilder {
   private name = 'Henrique de Ferraz'
-  private email = 'henriqueferraz@fw7.com.br'
+  private email = emailGenerator()
   private password = 'H3nr/qu3@F3rr4z'
   private isActive = false
   private role: user_role = user_role.USER
