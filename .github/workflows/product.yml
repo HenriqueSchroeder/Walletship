@@ -1,0 +1,54 @@
+name: Product
+
+on:
+  push:
+    branches:
+      - master
+
+    paths:
+      - 'packages/backend/**'
+
+jobs:
+  build:
+    name: Deploy
+    runs-on: ubuntu-latest
+    env:
+      PROJECT_PATH: packages/backend
+      PROJECT_NAME: backend
+      DB_USER: ${{ secrets.PRODUCT_DB_USER }}
+      DB_PASS: ${{ secrets.PRODUCT_DB_PASS }}
+      DB_HOST: ${{ secrets.PRODUCT_DB_HOST }}
+      DB_PORT: ${{ secrets.PRODUCT_DB_PORT }}
+      DB_DATABASE: ${{ secrets.PRODUCT_DB_DATABASE}}
+      SALT: ${{ secrets.PRODUCT_SALT }}
+      DATABASE_URL: ${{ secrets.PRODUCT_DATABASE_URL }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Instalando dependências
+        run: 'yarn'
+
+      - name: Deploy prisma
+        run: 'cd ${{ env.PROJECT_PATH }} && yarn prisma migrate deploy && yarn prisma generate'
+
+      - name: Testes e cobertura
+        env:
+          NODE_OPTIONS: '--max_old_space_size=8192'
+        run: 'cd ${{ env.PROJECT_PATH }} && yarn test:ci'
+
+      - name: Gera build do backend
+        run: 'cd ${{ env.PROJECT_PATH }} && yarn build'
+
+      - name: Removendo dependências desnecessárias
+        run: 'rm -rf node_modules && yarn --production'
+
+      - name: Deploy to Heroku
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{ secrets.PRODUCT_HEROKU_API_KEY }}
+          heroku_app_name: ${{ secrets.PRODUCT_HEROKU_NAME_APP }}
+          heroku_email: ${{ secrets.PRODUCT_HEROKU_EMAIL }}
+          usedocker: true
