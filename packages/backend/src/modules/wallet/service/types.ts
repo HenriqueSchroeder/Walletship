@@ -9,3 +9,7 @@ export type updateWalletParams = {
   title: string
   content: string
 }
+
+export type deleteWalletParams = {
+  id: string
+}

@@ -26,6 +26,9 @@ export const updateWallet = async (params: updateWalletParams) => {
    * If there is no wallet.
    */
   if (!walletExists) {
+    /**
+     * Logs.
+     */
     logger.info('Carteira não existe')
     logger.info('==== ATUALIZANDO A CARTEIRA =====')
     return {}
