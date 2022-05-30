@@ -13,3 +13,7 @@ export type updateWalletParams = {
 export type deleteWalletParams = {
   id: string
 }
+
+export type findWalletParams = {
+  userId: string
+}
