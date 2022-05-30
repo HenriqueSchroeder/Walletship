@@ -26,6 +26,9 @@ export const deleteWallet = async (params: deleteWalletParams) => {
    * If there is no wallet.
    */
   if (!walletExists) {
+    /**
+     * Logs.
+     */
     logger.info('Carteira não existe')
     logger.info('==== DELETANDO A CARTEIRA =====')
     return true
