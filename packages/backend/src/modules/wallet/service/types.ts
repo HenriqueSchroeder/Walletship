@@ -3,3 +3,9 @@ export type createWalletParams = {
   title: string
   content: string
 }
+
+export type updateWalletParams = {
+  id: string
+  title: string
+  content: string
+}
