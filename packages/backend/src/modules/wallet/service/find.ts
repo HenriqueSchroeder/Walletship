@@ -5,7 +5,7 @@ import { findWalletParams } from './types'
 /**
  * Displays all user's wallets.
  */
-export const findWallets = async (params: findWalletParams) => {
+export const findWallets = async (filter: findWalletParams) => {
   /**
    * Log.
    */
@@ -14,13 +14,13 @@ export const findWallets = async (params: findWalletParams) => {
   /**
    * Extracts values.
    */
-  const { userId } = params
+  const { userId, walletId } = filter
 
   /**
    * Find wallts.
    */
   const wallets = await db.wallet.findMany({
-    where: { userId },
+    where: { userId, id: { in: walletId } },
     select: {
       id: true,
       title: true,

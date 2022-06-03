@@ -7,7 +7,7 @@ import { createWallet } from './service/create'
 import { deleteWallet } from './service/delete'
 import { updateWallet } from './service/update'
 
-import { findWalletsData } from '~/schemas/wallet-find'
+import { FindWalletParameters, findWalletsData } from '~/schemas/wallet-find'
 import {
   UpdatedWalletData,
   UpdateWalletParameters
@@ -59,19 +59,22 @@ export class WalletQueryResolver {
     @Arg('params')
     params: DeleteWalletParameters
   ) {
-    return await deleteWallet(params)
+    return { deleted: await deleteWallet(params) }
   }
 
   @Query(() => [findWalletsData], {
     description: 'Todas as carteiras do usuario'
   })
   @Authorized()
-  async findWallets(@Ctx() context: APIContext) {
+  async findWalletsUser(
+    @Ctx() context: APIContext,
+    @Arg('filter', { nullable: true }) filter: FindWalletParameters
+  ) {
     /**
      * Get user id.
      */
     const userId = context.uuid
 
-    return await findWallets({ userId })
+    return await findWallets({ userId, ...filter })
   }
 }

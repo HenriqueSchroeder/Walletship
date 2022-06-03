@@ -16,4 +16,5 @@ export type deleteWalletParams = {
 
 export type findWalletParams = {
   userId: string
+  walletId?: string[]
 }
