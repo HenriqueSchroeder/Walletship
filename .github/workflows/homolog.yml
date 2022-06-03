@@ -1,13 +1,13 @@
 name: Homolog
 
 on:
-  workflow_dispatch:
   push:
     branches:
       - homolog
 
     paths:
       - 'packages/backend/**'
+  workflow_dispatch:
 
 jobs:
   build:
