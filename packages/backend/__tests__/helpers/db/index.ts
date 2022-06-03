@@ -12,4 +12,5 @@ export const truncateAllTables = async () => {
   await db.categories.deleteMany()
   await db.wallet.deleteMany()
   await db.user.deleteMany()
+  await closeDB()
 }
