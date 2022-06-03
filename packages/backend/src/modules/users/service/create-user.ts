@@ -1,5 +1,6 @@
 import { isEmail } from 'class-validator'
 import { logger } from '~/common/logger'
+
 import db from '~/db/prisma'
 import { createUserParams } from './types'
 
