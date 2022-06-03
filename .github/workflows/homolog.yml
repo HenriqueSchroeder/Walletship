@@ -22,6 +22,9 @@ jobs:
       DB_DATABASE: ${{ secrets.HOMOLOG_DB_DATABASE}}
       SALT: ${{ secrets.HOMOLOG_SALT }}
       DATABASE_URL: ${{ secrets.HOMOLOG_DATABASE_URL }}
+      APOLLO_KEY: ${{ secrets.HOMOLOG_APOLLO_KEY }}
+      APOLLO_GRAPH_REF: ${{ secrets.HOMOLOG_APOLLO_GRAPH_REF }}
+      APOLLO_SCHEMA_REPORTING: ${{ secrets.HOMOLOG_APOLLO_SCHEMA_REPORTING }}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
