@@ -53,10 +53,6 @@ jobs:
         run: 'cd ${{ env.PROJECT_PATH }} && yarn prisma migrate deploy && yarn prisma generate'
 
       - name: Deploy to Heroku
-        env:
-          APOLLO_KEY: ${{ secrets.HOMOLOG_APOLLO_KEY }}
-          APOLLO_GRAPH_REF: ${{ secrets.HOMOLOG_APOLLO_GRAPH_REF }}
-          APOLLO_SCHEMA_REPORTING: ${{ secrets.HOMOLOG_APOLLO_SCHEMA_REPORTING }}
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
           heroku_api_key: ${{secrets.HOMOLOG_HEROKU_API_KEY}}
