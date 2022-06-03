@@ -18,6 +18,5 @@
     "prisma:migrate:dev": "prisma migrate dev && prisma generate"
   },
   "author": "Henrique Schroeder <henriqueschroederhs@gmail.com.br>",
-  "license": "MIT",
-  "dependencies": {}
+  "license": "MIT"
 }

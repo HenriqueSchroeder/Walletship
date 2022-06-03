@@ -34,7 +34,9 @@ jobs:
       - name: Instalando dependências
         run: 'yarn'
 
-      - name: Deploy prisma
+      - name: Deploy prisma test
+        with:
+          DATABASE_URL: ${{ secrets.TEST_DATABASE_URL }}
         run: 'cd ${{ env.PROJECT_PATH }} && yarn prisma migrate deploy && yarn prisma generate'
 
       - name: Testes e cobertura
@@ -47,6 +49,9 @@ jobs:
 
       - name: Removendo dependências desnecessárias
         run: 'rm -rf node_modules && yarn --production'
+
+      - name: Deploy prisma homolog
+        run: 'cd ${{ env.PROJECT_PATH }} && yarn prisma migrate deploy && yarn prisma generate'
 
       - name: Deploy to Heroku
         uses: akhileshns/heroku-deploy@v3.12.12

@@ -18,11 +18,6 @@ export const {
 
   SALT = 'the_bomb_has_been_planted',
 
-  POSTGRES_USER = '',
-  POSTGRES_PASS = '',
-  POSTGRES_HOST = '',
-  POSTGRES_DATABASE = '',
-
   // Prisma
   DATABASE_URL = ''
 } = process.env
