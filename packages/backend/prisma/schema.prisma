@@ -19,7 +19,7 @@ model user {
   name     String
   role     user_role @default(USER)
   password String
-  isActive Boolean   @default(false)
+  isActive Boolean   @default(true) // logo deve ser alterado para false e feito verificação de email
 
   categories categories[]
   wallet     wallet[]
