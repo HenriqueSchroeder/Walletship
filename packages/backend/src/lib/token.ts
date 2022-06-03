@@ -1,5 +1,6 @@
-import { user_role } from '@prisma/client'
 import { verify } from 'jsonwebtoken'
+import { user_role } from '@prisma/client'
+
 import { SALT } from '~/config/env'
 
 export interface Token {
