@@ -1,4 +1,4 @@
-<h1 align="center">Wallet</h1>
+<h1 align="center">Walletship</h1>
 
 <p align="center">
   <a href="#-origem">Origem</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
@@ -9,7 +9,7 @@
 
 ## 🛸 Origem
 
-Depois que a **Mothership** veio até o planeta 3357 nos mostraram suas tecnologias e modo de trabalho, com isso melhoramos nossa forma de resolver problemas. Dessa forma foi desenvolvido a **Wallet** para solucionar os problemas de gestão de gastos usando a tecnologia que a **Mothership** trouxe a nós.
+Depois que a **Mothership** veio até o planeta 3357 nos mostraram suas tecnologias e modo de trabalho, com isso melhoramos nossa forma de resolver problemas. Dessa forma foi desenvolvido a **Walletship** para solucionar os problemas de gestão de gastos usando a tecnologia que a **Mothership** trouxe a nós.
 
 ## 🚀 Tecnologias
 
@@ -22,7 +22,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 ## 💻 Projeto
 
-A **Wallet** um sistema para gerenciamento de gastos.
+A **Walletship** um sistema para gerenciamento de gastos.
 
 ## 📝 Licença
 
