@@ -21,6 +21,7 @@ jobs:
     steps:
       - name: Print value
         run: echo ${{ env.environment }}
+        uses: './github/workflow/master.yml'
 
   dev:
     if: ${{ github.event_name == 'push' && github.ref_name == 'development' || github.event.inputs.environment == 'DEV' }}
@@ -30,3 +31,4 @@ jobs:
     steps:
       - name: Print value
         run: echo ${{ env.environment }}
+        uses: './github/workflow/homolog.yml'
