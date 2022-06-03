@@ -4,11 +4,14 @@ import cors from 'cors'
 import helmet from 'helmet'
 import express from 'express'
 import compression from 'compression'
-import { createServer } from 'http'
+import statusMonitor from 'express-status-monitor'
 import { buildSchema } from 'type-graphql'
+import { createServer } from 'http'
 import { ApolloServer } from 'apollo-server-express'
 
 import { authChecker } from './middlewares/authorization'
+import { PORT } from './config/env'
+import { isDevEnvironment } from './common/conditions'
 
 /**
  * Create the server.
@@ -75,6 +78,22 @@ export const server = async () => {
    */
   app.use(compression())
 
+  if (isDevEnvironment) {
+    app.use(
+      statusMonitor({
+        path: '/status',
+        healthChecks: [
+          {
+            protocol: 'http',
+            host: 'localhost',
+            path: '/health-check',
+            port: PORT
+          }
+        ]
+      })
+    )
+  }
+
   /**
    * Apply express.
    */
@@ -85,6 +104,10 @@ export const server = async () => {
    * Enable subscriptions.
    */
   const httpServer = createServer(app)
+
+  /**
+   * Use bull board with authentication.
+   */
 
   return httpServer
 }
