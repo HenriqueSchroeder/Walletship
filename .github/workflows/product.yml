@@ -35,12 +35,13 @@ jobs:
         run: 'yarn'
 
       - name: Deploy prisma test
-        with:
+        env:
           DATABASE_URL: ${{ secrets.TEST_DATABASE_URL }}
         run: 'cd ${{ env.PROJECT_PATH }} && yarn prisma migrate deploy && yarn prisma generate'
 
       - name: Testes e cobertura
         env:
+          DATABASE_URL: ${{ secrets.TEST_DATABASE_URL }}
           NODE_OPTIONS: '--max_old_space_size=8192'
         run: 'cd ${{ env.PROJECT_PATH }} && yarn test:ci'
 

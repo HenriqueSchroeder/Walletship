@@ -8,9 +8,9 @@ import { DefaultOptions, split } from '@apollo/client'
 import { ApolloClient, InMemoryCache, HttpLink } from '@apollo/client'
 
 import { PORT } from '~/config/env'
-import { truncateAllTables } from './db'
 import { server as httpServer } from '~/app'
 import { Client, createClient } from 'graphql-ws'
+import { closeDB, truncateAllTables } from './db'
 
 /**
  * Query definition interface.
@@ -85,6 +85,10 @@ export const closeServer = () => {
      */
     server.close()
 
+    /**
+     * Close DB.
+     */
+    await closeDB()
     resolve()
   })
 }

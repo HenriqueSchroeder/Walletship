@@ -1,5 +1,9 @@
 import db from '~/db/prisma'
 
+export const closeDB = async () => {
+  await db.$disconnect()
+}
+
 /**
  * Truncate all tables.
  */
