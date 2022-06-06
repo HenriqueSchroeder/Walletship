@@ -5,8 +5,8 @@ import { UserBuilder } from './user'
 import { WalletBuilder } from './wallet'
 
 export class CategoryBuilder {
-  private title = 'Wallet'
-  private content = 'Wallet description'
+  private title = 'Category'
+  private content = 'Category description'
   private user!: user
   private wallet!: wallet
 
