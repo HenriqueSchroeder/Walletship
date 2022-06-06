@@ -9,7 +9,7 @@ export const closeDB = async () => {
  */
 export const truncateAllTables = async () => {
   await db.movement.deleteMany()
-  await db.categories.deleteMany()
+  await db.category.deleteMany()
   await db.wallet.deleteMany()
   await db.user.deleteMany()
   await closeDB()
