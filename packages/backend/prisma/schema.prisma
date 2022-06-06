@@ -33,7 +33,7 @@ model wallet {
   updatedAt DateTime @updatedAt
 
   category category[]
-  movement movement[]
+  moviment moviment[]
 
   userId String
   user   user   @relation(fields: [userId], references: [id])
@@ -46,7 +46,7 @@ model category {
   title     String
   content   String?
 
-  movement movement[]
+  moviment moviment[]
 
   userId   String
   user     user    @relation(fields: [userId], references: [id])
@@ -54,7 +54,7 @@ model category {
   wallet   wallet? @relation(fields: [walletId], references: [id])
 }
 
-model movement {
+model moviment {
   id           String   @id @unique @default(uuid())
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
