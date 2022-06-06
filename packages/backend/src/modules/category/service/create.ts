@@ -43,7 +43,7 @@ export const createCategory = async (params: createCategoryParams) => {
     /**
      * Consulting the wallet ID.
      */
-    const walletExists = await isExistsWallet(walletId)
+    const walletExists = await isExistsWallet(walletId, userId)
 
     /**
      * If you don't find your wallet.
@@ -73,7 +73,7 @@ export const createCategory = async (params: createCategoryParams) => {
   /**
    * Logs.
    */
-  logger.info('Carteira criada')
+  logger.info('Categoria criada')
   logger.info('==== CRIA CATEGORIA =====')
 
   return { status: 'OK', description: 'Created category', id: category.id }
