@@ -1,4 +1,4 @@
-import { IsString } from 'class-validator'
+import { IsOptional, IsString } from 'class-validator'
 import { Field, ObjectType, InputType } from 'type-graphql'
 
 /**
@@ -36,10 +36,13 @@ export class CreateCategoryParameters {
   @Field({ description: DESCRIPTIONS.title })
   title!: string
 
-  @Field({ description: DESCRIPTIONS.content })
+  @Field({ nullable: true, description: DESCRIPTIONS.content })
+  @IsOptional()
+  @IsString()
   content?: string
 
-  @Field(() => [String], { nullable: true, description: DESCRIPTIONS.walletId })
+  @Field({ nullable: true, description: DESCRIPTIONS.walletId })
+  @IsOptional()
   @IsString()
   walletId?: string
 }
