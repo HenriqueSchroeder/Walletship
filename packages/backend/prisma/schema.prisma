@@ -21,8 +21,8 @@ model user {
   password String
   isActive Boolean   @default(true) // logo deve ser alterado para false e feito verificação de email
 
-  categories categories[]
-  wallet     wallet[]
+  category category[]
+  wallet   wallet[]
 }
 
 model wallet {
@@ -32,14 +32,14 @@ model wallet {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  categories categories[]
-  movement   movement[]
+  category category[]
+  movement movement[]
 
   userId String
   user   user   @relation(fields: [userId], references: [id])
 }
 
-model categories {
+model category {
   id        String   @id @unique @default(uuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -62,8 +62,8 @@ model movement {
   content      String?
   value        Float
 
-  walletId     String
-  wallet       wallet     @relation(fields: [walletId], references: [id])
-  categoriesId String
-  categories   categories @relation(fields: [categoriesId], references: [id])
+  walletId   String
+  wallet     wallet   @relation(fields: [walletId], references: [id])
+  categoryId String
+  category   category @relation(fields: [categoryId], references: [id])
 }
