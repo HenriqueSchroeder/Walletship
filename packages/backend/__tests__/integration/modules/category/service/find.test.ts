@@ -123,14 +123,14 @@ describe('[INTEGRAÇÃO] Mostrando todas as categorias do usuario', () => {
       }
 
       /**
-       * Find user wallets.
+       * Find user categoties.
        */
-      const wallets = await findCategories(params)
+      const categoties = await findCategories(params)
 
       /**
        * Expect data.
        */
-      expect(wallets).toHaveLength(createdCategoties.length)
+      expect(categoties).toHaveLength(createdCategoties.length)
     }))
 
   test('Retorna nada pois o usuario não tem categoria', () =>

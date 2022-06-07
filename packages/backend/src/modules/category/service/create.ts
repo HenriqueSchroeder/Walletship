@@ -73,7 +73,7 @@ export const createCategory = async (params: createCategoryParams) => {
   /**
    * Logs.
    */
-  logger.info('Categoria criada')
+  logger.info(`Categoria criada: ${JSON.stringify(category)}`)
   logger.info('==== CRIA CATEGORIA =====')
 
   return { status: 'OK', description: 'Created category', id: category.id }

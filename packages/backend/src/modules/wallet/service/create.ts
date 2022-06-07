@@ -52,7 +52,7 @@ export const createWallet = async (params: createWalletParams) => {
   /**
    * Logs.
    */
-  logger.info('Carteira criada')
+  logger.info(`Carteira criada: ${JSON.stringify(wallet)}`)
   logger.info('==== CRIA CARTEIRA =====')
 
   return { status: 'OK', description: 'Created wallet', id: wallet.id }
