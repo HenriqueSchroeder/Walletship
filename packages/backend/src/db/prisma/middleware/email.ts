@@ -19,7 +19,7 @@ export const emailVerification = async (
     if (user.email && !isEmail(user.email)) {
       throw new Error('Email is not valid')
     }
-    user.email = user.email.toLowerCase()
+    user.email = user.email ? user.email.toLowerCase() : user.email
   }
 
   return await next(params)

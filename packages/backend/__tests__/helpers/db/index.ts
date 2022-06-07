@@ -14,3 +14,5 @@ export const truncateAllTables = async () => {
   await db.user.deleteMany()
   await closeDB()
 }
+
+jest.setTimeout(30000)
