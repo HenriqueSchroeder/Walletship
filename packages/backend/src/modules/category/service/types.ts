@@ -7,11 +7,13 @@ export type createCategoryParams = {
 
 export type updateCategoryParams = {
   content?: string
+  userId: string
   title: string
   id: string
 }
 
 export type deleteCategoryParams = {
+  userId: string
   id: string
 }
 

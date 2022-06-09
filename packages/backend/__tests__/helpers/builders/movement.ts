@@ -54,20 +54,21 @@ export class MovementBuilder {
     const createdUser = this.user || (await new UserBuilder().save())
 
     /**
-     * Creating the wallet.
-     */
-    const createdWallet =
-      this.wallet || (await new WalletBuilder().setUser(createdUser).save())
-
-    /**
      * Creating the category.
      */
-    const { id: categoryId } =
+    const { id: categoryId, walletId } =
       this.category ||
       (await new CategoryBuilder()
-        .setWallet(createdWallet)
+        .setWallet(this.wallet)
         .setUser(createdUser)
         .save())
+
+    /**
+     * Creating the wallet.
+     */
+    const createdWallet = walletId
+      ? { id: walletId }
+      : await new WalletBuilder().setUser(createdUser).save()
 
     const data = {
       value: this.value,

@@ -30,9 +30,9 @@ export const deleteMovement = async (params: deleteMovementParams) => {
     /**
      * Logs.
      */
-    logger.info('Movemento não existe')
+    logger.info('Movemento não existe nesse usuário')
     logger.info('==== DELETANDO O MOVIMENTO =====')
-    return true
+    return false
   }
 
   /**

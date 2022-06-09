@@ -5,11 +5,11 @@ import { client, closeServer, startServer } from 'test/helpers/server'
 
 import { deleteCategoryQuery } from './queries'
 
-describe('[E2E] Deletar a carterira do usuario', () => {
+describe('[E2E] Deletar a categoria do usuario', () => {
   beforeAll(startServer)
   afterAll(closeServer)
 
-  test('deletando a carteira do usuario', () =>
+  test('Deletando a categoria do usuario', () =>
     /**
      * Create tenant context.
      */

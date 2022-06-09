@@ -1,15 +1,15 @@
 import { loginUser } from 'test/helpers/login-setup'
 import { runInTenant } from 'test/helpers/tenant'
-import { CategoryBuilder } from 'test/helpers/builders/category'
+import { MovementBuilder } from 'test/helpers/builders/movement'
 import { client, closeServer, startServer } from 'test/helpers/server'
 
-import { updateCategoryQuery } from './queries'
+import { updateMovementQuery } from './queries'
 
-describe('[E2E] Atualiza dados da categoria do usuario', () => {
+describe('[E2E] Atualiza dados da movimentação do usuario', () => {
   beforeAll(startServer)
   afterAll(closeServer)
 
-  test('Atualizando os dados da categoria', () =>
+  test('Atualizando os dados da movimentação', () =>
     /**
      * Create tenant context.
      */
@@ -20,9 +20,9 @@ describe('[E2E] Atualiza dados da categoria do usuario', () => {
       const { createdUser, generatedToken } = await loginUser()
 
       /**
-       * Create category.
+       * Create movement.
        */
-      const createdCategory = await new CategoryBuilder()
+      const createdMovement = await new MovementBuilder()
         .setUser(createdUser)
         .save()
 
@@ -30,26 +30,23 @@ describe('[E2E] Atualiza dados da categoria do usuario', () => {
        * Create params.
        */
       const params = {
-        id: createdCategory.id,
-        title: 'Bom dua',
-        content: 'AAAoaijojoaijsodjoajodjosjo'
+        id: createdMovement.id,
+        value: 140.6,
+        content: 'AAAoaijojoaijsodjoajodjosjo',
+        dateMovement: new Date().toISOString()
       }
 
       /**
-       * Update category.
+       * Update movement.
        */
       const { data } = await client(generatedToken).query({
-        query: updateCategoryQuery,
+        query: updateMovementQuery,
         variables: { params }
       })
 
       /**
        * Expect data.
        */
-      expect(data.updateCategory).toMatchObject({
-        id: params.id,
-        title: params.title,
-        content: params.content
-      })
+      expect(data.updateMovement).toMatchObject(params)
     }))
 })

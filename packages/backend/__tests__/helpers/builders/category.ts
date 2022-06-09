@@ -2,13 +2,12 @@ import { user, wallet } from '@prisma/client'
 
 import db from '~/db/prisma'
 import { UserBuilder } from './user'
-import { WalletBuilder } from './wallet'
 
 export class CategoryBuilder {
   private title = 'Category'
   private content = 'Category description'
   private user!: user
-  private wallet!: wallet
+  private wallet!: wallet | undefined
 
   setTitle(title: string) {
     this.title = title
@@ -42,8 +41,7 @@ export class CategoryBuilder {
     /**
      * Creating the wallet.
      */
-    const { id: walletId } =
-      this.wallet || (await new WalletBuilder().setUser(createdUser).save())
+    const { id: walletId } = this.wallet || { id: undefined }
 
     const data = {
       title: this.title,

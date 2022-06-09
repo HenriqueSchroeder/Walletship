@@ -49,10 +49,15 @@ export class CategoryQueryResolver {
   })
   @Authorized()
   async updateCategory(
-    @Arg('params')
-    params: UpdateCategoryParameters
+    @Ctx() context: APIContext,
+    @Arg('params') params: UpdateCategoryParameters
   ) {
-    return await updateCategory(params)
+    /**
+     * Get user id.
+     */
+    const userId = context.uuid
+
+    return await updateCategory({ userId, ...params })
   }
 
   @Query(() => DeletedCategoryData, {
@@ -60,10 +65,15 @@ export class CategoryQueryResolver {
   })
   @Authorized()
   async deleteCategory(
-    @Arg('params')
-    params: DeleteCategoryParameters
+    @Ctx() context: APIContext,
+    @Arg('params') params: DeleteCategoryParameters
   ) {
-    return { deleted: await deleteCategory(params) }
+    /**
+     * Get user id.
+     */
+    const userId = context.uuid
+
+    return { deleted: await deleteCategory({ userId, ...params }) }
   }
 
   @Query(() => [FindCategoriesData], {

@@ -1,15 +1,15 @@
 import { loginUser } from 'test/helpers/login-setup'
 import { runInTenant } from 'test/helpers/tenant'
-import { CategoryBuilder } from 'test/helpers/builders/category'
 import { client, closeServer, startServer } from 'test/helpers/server'
 
-import { updateCategoryQuery } from './queries'
+import { deleteMovementQuery } from './queries'
+import { MovementBuilder } from 'test/helpers/builders/movement'
 
-describe('[E2E] Atualiza dados da categoria do usuario', () => {
+describe('[E2E] Deletar a movimentação do usuario', () => {
   beforeAll(startServer)
   afterAll(closeServer)
 
-  test('Atualizando os dados da categoria', () =>
+  test('Deletando a Movimentação do usuario', () =>
     /**
      * Create tenant context.
      */
@@ -20,9 +20,9 @@ describe('[E2E] Atualiza dados da categoria do usuario', () => {
       const { createdUser, generatedToken } = await loginUser()
 
       /**
-       * Create category.
+       * Create moviment.
        */
-      const createdCategory = await new CategoryBuilder()
+      const createdMoviment = await new MovementBuilder()
         .setUser(createdUser)
         .save()
 
@@ -30,26 +30,23 @@ describe('[E2E] Atualiza dados da categoria do usuario', () => {
        * Create params.
        */
       const params = {
-        id: createdCategory.id,
-        title: 'Bom dua',
-        content: 'AAAoaijojoaijsodjoajodjosjo'
+        id: createdMoviment.id
       }
 
       /**
-       * Update category.
+       * delete moviment.
        */
       const { data } = await client(generatedToken).query({
-        query: updateCategoryQuery,
+        query: deleteMovementQuery,
         variables: { params }
       })
 
       /**
        * Expect data.
        */
-      expect(data.updateCategory).toMatchObject({
-        id: params.id,
-        title: params.title,
-        content: params.content
+      expect(data.deleteMovement).toMatchObject({
+        deleted: true,
+        __typename: 'DeletedMovementData'
       })
     }))
 })

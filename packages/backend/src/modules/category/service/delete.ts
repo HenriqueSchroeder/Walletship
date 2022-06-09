@@ -16,12 +16,12 @@ export const deleteCategory = async (params: deleteCategoryParams) => {
   /**
    * Extracts values.
    */
-  const { id } = params
+  const { id, userId } = params
 
   /**
    * There is a category.
    */
-  const categoryExists = await isExistsCategory(id)
+  const categoryExists = await isExistsCategory(id, userId)
 
   /**
    * If there is no category.

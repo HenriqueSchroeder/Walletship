@@ -65,7 +65,7 @@ describe('[INTEGRAÇÃO] Deletando os movementos do usuário', () => {
       /**
        * Expect data.
        */
-      expect(movement).toBe(true)
+      expect(movement).toBe(false)
     }))
 
   test('Tentar deletar um movemento de outro usuário', () =>
@@ -99,6 +99,6 @@ describe('[INTEGRAÇÃO] Deletando os movementos do usuário', () => {
       /**
        * Expect data.
        */
-      expect(movement).toBe(true)
+      expect(movement).toBe(false)
     }))
 })

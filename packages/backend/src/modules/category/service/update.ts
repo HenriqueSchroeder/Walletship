@@ -16,12 +16,12 @@ export const updateCategory = async (params: updateCategoryParams) => {
   /**
    * Extracts values.
    */
-  const { id, title, content } = params
+  const { id, userId, title, content } = params
 
   /**
    * There is a wallet.
    */
-  const categoryExists = await isExistsCategory(id)
+  const categoryExists = await isExistsCategory(id, userId)
 
   /**
    * If there is no category.

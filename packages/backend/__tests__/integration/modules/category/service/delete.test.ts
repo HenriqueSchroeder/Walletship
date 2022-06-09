@@ -1,4 +1,5 @@
 import { runInTenant } from 'test/helpers/tenant'
+import { UserBuilder } from 'test/helpers/builders/user'
 import { CategoryBuilder } from 'test/helpers/builders/category'
 import { truncateAllTables } from 'test/helpers/db'
 
@@ -11,15 +12,23 @@ describe('[INTEGRAÇÃO] Deletando as categorias', () => {
   test('Daletando a categoria ', () =>
     runInTenant(async () => {
       /**
+       * Create user.
+       */
+      const createdUser = await new UserBuilder().save()
+
+      /**
        * Create category.
        */
-      const createdCategory = await new CategoryBuilder().save()
+      const createdCategory = await new CategoryBuilder()
+        .setUser(createdUser)
+        .save()
 
       /**
        * Create params.
        */
       const params = {
-        id: createdCategory.id
+        id: createdCategory.id,
+        userId: createdUser.id
       }
 
       /**
@@ -36,10 +45,16 @@ describe('[INTEGRAÇÃO] Deletando as categorias', () => {
   test('Tentar deletar uma categoria inexistente', () =>
     runInTenant(async () => {
       /**
+       * Create user.
+       */
+      const createdUser = await new UserBuilder().save()
+
+      /**
        * Create params.
        */
       const params = {
-        id: 'ID invalido'
+        id: 'ID invalido',
+        userId: createdUser.id
       }
 
       /**
