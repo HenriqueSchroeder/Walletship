@@ -6,8 +6,7 @@
     "packages/*"
   ],
   "scripts": {
-    "prisma:prod": "prisma migrate deploy",
-    "start:backend": "npm run prisma:prod && node backend/index.js"
+    "start:backend": "node backend/index.js"
   },
   "repository": "git@github.com:HenriqueSchroeder/Wallet.git",
   "author": "Henrique Schroeder <henriqueschroederhs@gmail.com.br>",
