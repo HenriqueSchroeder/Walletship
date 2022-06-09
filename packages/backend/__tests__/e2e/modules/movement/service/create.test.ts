@@ -1,10 +1,10 @@
 import { loginUser } from 'test/helpers/login-setup'
 import { runInTenant } from 'test/helpers/tenant'
+import { WalletBuilder } from 'test/helpers/builders/wallet'
+import { CategoryBuilder } from 'test/helpers/builders/category'
 import { client, closeServer, startServer } from 'test/helpers/server'
 
 import { createMovementQuery } from './queries'
-import { WalletBuilder } from 'test/helpers/builders/wallet'
-import { CategoryBuilder } from 'test/helpers/builders/category'
 
 describe('[E2E] Criação das movimentações do usuario', () => {
   beforeAll(startServer)
