@@ -1,9 +1,9 @@
 import { loginUser } from 'test/helpers/login-setup'
 import { runInTenant } from 'test/helpers/tenant'
+import { MovementBuilder } from 'test/helpers/builders/movement'
 import { client, closeServer, startServer } from 'test/helpers/server'
 
 import { deleteMovementQuery } from './queries'
-import { MovementBuilder } from 'test/helpers/builders/movement'
 
 describe('[E2E] Deletar a movimentação do usuario', () => {
   beforeAll(startServer)
